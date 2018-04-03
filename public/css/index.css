@@ -1,0 +1,76 @@
+
+/**
+ * ===========================================
+ * General HTML Tags
+ * ===========================================
+ */
+img{
+  height: 64px;
+  width: 64px;
+}
+
+h3{
+  margin-top: 15px;
+}
+
+/**
+ * ===========================================
+ * Classes for home.handlebars
+ * ===========================================
+ */
+.default_header{
+  background-color: #222222;
+  color: white;
+  height: 5vh;
+}
+
+.default_body{
+  height: 60vh;
+}
+
+.button_body{
+  height: 35vh;
+}
+
+
+
+
+
+
+
+/* Small devices (landscape phones, 576px and up */
+@media (min-width: 576px) {  }
+
+/* Medium devices (tablets, 768px and up */
+@media (min-width: 768px) {  }
+
+/* Large devices (desktops, 992px and up */
+@media (min-width: 992px) {  }
+
+/* Extra large devices (large desktops, 1200px and up */
+@media (min-width: 1200px) {
+  img{
+    height: 120px;
+    width: 120px;
+  }
+
+  .default_header > h1{
+    font-size: 2.5rem;
+  }
+
+  .default_body > h2{
+    font-size: 3rem;
+  }
+
+  .btn{
+    font-size: 2rem;
+  }
+
+  #login_bt{
+    margin-left: 600px;
+  }
+
+  #register_bt{
+    margin-right: 600px;
+  }
+}
