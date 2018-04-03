@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+
+  <!-- Meta viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">
+
+  <!-- Custom CSS Link -->
+  <link rel="stylesheet" href="/css/index.css">
+
+  <!-- JQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script> -->
+
+  <title>Planny</title>
+</head>
+
+<body>
+  <div class="d-flex align-items-center justify-content-center default_header">
+    <h1>Planny</h1>
+  </div>
+
+  <!-- Material Login Form -->
+  <div class="d-flex p-2 align-items-center justify-content-center register_form">
+    <div class="card">
+      <div class="d-flex align-items-center justify-content-center card-body">
+        <form method="POST" action="/users/login">
+          <p class="h4 text-center py-4">Sign up</p>
+
+          <!-- Material input email -->
+          <div class="md-form">
+            <i class="fa fa-envelope prefix grey-text"></i>
+            <input type="email" name="email" id="materialFormCardEmailEx" class="form-control" placeholder="Your email">
+          </div>
+
+          <!-- Material input password -->
+          <div class="md-form">
+            <i class="fa fa-lock prefix grey-text"></i>
+            <input type="password" name="password" id="materialFormCardPasswordEx" class="form-control" placeholder="Your password">
+          </div>
+
+          <div class="text-center py-4 mt-3">
+            <button class="btn btn-cyan" type="submit">Login</button>
+          </div>
+
+          <p class="h5 text-center py-4">New User? <a href="../users/register">Register</a> </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

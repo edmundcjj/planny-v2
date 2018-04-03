@@ -13,6 +13,14 @@
  * Controller logic
  * ===========================================
  */
+// Render itineraries homepage
+const home = (request, response) => {
+  let context = {
+    username : request.cookies['username']
+  }
+  response.render('itineraries/homepage', context);
+};
+
 // // Logic to retrieve data of a specific pokemon and display on the page
 // const get = (pokemonModel) => {
 //   return (request, response) => {
@@ -110,10 +118,11 @@
  * Export controller functions as a module
  * ===========================================
  */
-// module.exports = {
-//   get,
+module.exports = {
+  home,
+  // get,
 //   updateForm,
 //   update,
 //   createForm,
 //   create
-// };
+};

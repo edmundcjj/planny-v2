@@ -9,7 +9,7 @@
  */
 
  // Import files from the controller so that the functions can be called
- const pokemons = require('./controllers/itineraries');
+ const itineraries = require('./controllers/itineraries');
  const users = require('./controllers/user');
 
  module.exports = (app, db) => {
@@ -19,15 +19,19 @@
     *  =========================================
     */
    // CRUD users
+   app.get('/users/register', users.newForm);   // Form to create new user
+   app.post('/users', users.create(db));
 
 
    // Authentication
+   app.get('/users/login', users.loginForm);    // Form to authenticate user
+   app.post('/users/login', users.login(db));
 
    /*
     *  =========================================
-    *  Pokemons
+    *  Itineraries
     *  =========================================
     */
    // CRUD itineraries
-   
+   app.get('/itineraries/homepage', itineraries.home);
  };

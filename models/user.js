@@ -22,44 +22,45 @@ const bcrypt = require('bcrypt');
 module.exports = (user_dbPool) => {
   // `dbPool` is accessible within this function scope
   return {
-    // create: (user, callback) => {
-    //   // run user input password through bcrypt to obtain hashed password
-    //   bcrypt.hash(user.password, 1, (err, hashed) => {
-    //     if (err) console.error('error!', err);
-    //
-    //     // set up query
-    //     const queryString = 'INSERT INTO users (name, email, password) VALUES ($1, $2, $3)';
-    //     const values = [
-    //       user.name,
-    //       user.email,
-    //       hashed
-    //     ];
-    //
-    //     // execute query
-    //     user_dbPool.query(queryString, values, (error, queryResult) => {
-    //       // invoke callback function with results after query has executed
-    //       callback(error, queryResult);
-    //     });
-    //   });
-    // },
-    //
-    // login: (user, callback) => {
-    //   // TODO: Add logic here
-    //   // set up query
-    //   const queryString = 'SELECT * from users WHERE email=$1';
-    //   const values = [user.email];
-    //
-    //   // execute query
-    //   user_dbPool.query(queryString, values, (error, queryResult) => {
-    //     // Compare password entered by user versus password in the database
-    //     bcrypt.compare(user.password, queryResult.rows[0].password, (err, res) => {
-    //       if (res) {
-    //         callback(error, queryResult);
-    //       } else {
-    //         callback(error, queryResult);
-    //       }
-    //     });
-    //   });
-    // }
+    create: (user, callback) => {
+      console.log("Inside create user function in models");
+      // run user input password through bcrypt to obtain hashed password
+      bcrypt.hash(user.password, 1, (err, hashed) => {
+        if (err) console.error('error!', err);
+
+        // set up query
+        const queryString = 'INSERT INTO users (name, email, password) VALUES ($1, $2, $3)';
+        const values = [
+          user.name,
+          user.email,
+          hashed
+        ];
+
+        // execute query
+        user_dbPool.query(queryString, values, (error, queryResult) => {
+          // invoke callback function with results after query has executed
+          callback(error, queryResult);
+        });
+      });
+    },
+
+    login: (user, callback) => {
+      // TODO: Add logic here
+      // set up query
+      const queryString = 'SELECT * from users WHERE email=$1';
+      const values = [user.email];
+
+      // execute query
+      user_dbPool.query(queryString, values, (error, queryResult) => {
+        // Compare password entered by user versus password in the database
+        bcrypt.compare(user.password, queryResult.rows[0].password, (err, res) => {
+          if (res) {
+            callback(error, queryResult);
+          } else {
+            callback(error, queryResult);
+          }
+        });
+      });
+    }
   };
 };

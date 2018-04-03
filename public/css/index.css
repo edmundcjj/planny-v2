@@ -1,16 +1,21 @@
-
 /**
  * ===========================================
  * General HTML Tags
  * ===========================================
  */
-img{
-  height: 64px;
-  width: 64px;
+
+img {
+  height: 32px;
+  width: 32px;
 }
 
-h3{
+h1 {
+  margin: 0;
+}
+
+h3 {
   margin-top: 15px;
+  font-size: 1rem;
 }
 
 /**
@@ -18,59 +23,202 @@ h3{
  * Classes for home.handlebars
  * ===========================================
  */
-.default_header{
+
+.default_header {
   background-color: #222222;
   color: white;
-  height: 5vh;
+  height: 7vh;
 }
 
-.default_body{
+.default_body {
   height: 60vh;
 }
 
-.button_body{
-  height: 35vh;
+.button_body {
+  height: 33vh;
 }
 
+.default_header>h1 {
+  font-size: 2rem;
+}
 
+.default_body>h2 {
+  font-size: 1.3rem;
+}
 
+.btn {
+  font-size: 1rem;
+}
 
+.card {
+  height: 450px;
+  width: 250px;
+}
 
+/**
+ * ===========================================
+ * Classes for register.handlebars
+ * ===========================================
+ */
 
+.register_form {
+  height: 90vh;
+}
+
+/**
+  * ===========================================
+  * Classes for login.handlebars
+  * ===========================================
+  */
+
+.login_form {
+  height: 90vh;
+}
+
+/**
+ * ===========================================
+ * Media Queries
+ * ===========================================
+ */
 
 /* Small devices (landscape phones, 576px and up */
-@media (min-width: 576px) {  }
+
+@media (min-width: 576px) {}
 
 /* Medium devices (tablets, 768px and up */
-@media (min-width: 768px) {  }
+
+@media (min-width: 768px) {
+  img {
+    height: 80px;
+    width: 80px;
+  }
+  h3 {
+    font-size: 2rem;
+  }
+  input[type="text"] {
+    font-size: 1.5rem;
+  }
+  input[type="email"] {
+    font-size: 1.5rem;
+  }
+  input[type="password"] {
+    font-size: 1.5rem;
+  }
+  .default_header>h1 {
+    font-size: 2.5rem;
+  }
+  .default_body>h2 {
+    font-size: 3rem;
+  }
+  .btn {
+    font-size: 1.5rem;
+  }
+  .h4 {
+    font-size: 2rem;
+  }
+  .card {
+    height: 500px;
+    width: 500px;
+  }
+  #login_bt {
+    margin-left: 100px;
+  }
+  #register_bt {
+    margin-right: 100px;
+  }
+}
 
 /* Large devices (desktops, 992px and up */
-@media (min-width: 992px) {  }
+
+@media (min-width: 992px) {
+  img {
+    height: 150px;
+    width: 150px;
+  }
+  h3 {
+    font-size: 2.5rem;
+  }
+  input[type="text"] {
+    font-size: 2rem;
+  }
+  input[type="email"] {
+    font-size: 2rem;
+  }
+  input[type="password"] {
+    font-size: 2rem;
+  }
+  .default_header>h1 {
+    font-size: 4rem;
+  }
+  .default_body>h2 {
+    font-size: 3.5rem;
+  }
+  .btn {
+    font-size: 2.5rem;
+  }
+  .h4 {
+    font-size: 2.5rem;
+  }
+  .h5{
+    font-size: 1.5rem;
+  }
+  .card {
+    height: 600px;
+    width: 600px;
+  }
+  #login_bt {
+    margin-left: 100px;
+  }
+  #register_bt {
+    margin-right: 100px;
+  }
+}
 
 /* Extra large devices (large desktops, 1200px and up */
+
 @media (min-width: 1200px) {
-  img{
+  img {
     height: 120px;
     width: 120px;
   }
-
-  .default_header > h1{
-    font-size: 2.5rem;
+  h3 {
+    font-size: 1.5rem;
   }
-
-  .default_body > h2{
+  input[type="text"] {
+    font-size: 1.5rem;
+  }
+  input[type="email"] {
+    font-size: 1.5rem;
+  }
+  input[type="password"] {
+    font-size: 1.5rem;
+  }
+  .default_header>h1 {
     font-size: 3rem;
   }
-
-  .btn{
-    font-size: 2rem;
+  .default_body>h2 {
+    font-size: 3.5rem;
   }
-
-  #login_bt{
+  .btn {
+    font-size: 2.5rem;
+  }
+  .h4 {
+    font-size: 2.5rem;
+  }
+  .h5{
+    font-size: 1.5rem;
+  }
+  .btn {
+    font-size: 1.5rem;
+  }
+  .card {
+    height: 550px;
+    width: 500px;
+  }
+  #login_bt {
     margin-left: 600px;
   }
-
-  #register_bt{
+  #register_bt {
     margin-right: 600px;
   }
 }
