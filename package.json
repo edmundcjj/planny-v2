@@ -23,6 +23,7 @@
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
     "jsonfile": "^4.0.0",
+    "mdbootstrap": "^4.5.0",
     "method-override": "^2.3.10",
     "nodemon": "^1.17.3",
     "pg": "^7.4.1"
