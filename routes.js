@@ -24,6 +24,7 @@
 
 
    // Authentication
+   app.post('/users/logout', users.logout);
    app.get('/users/login', users.loginForm);    // Form to authenticate user
    app.post('/users/login', users.login(db));
 

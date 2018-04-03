@@ -15,8 +15,12 @@
  */
 // Render itineraries homepage
 const home = (request, response) => {
+  let loggedIn = request.cookies['loggedIn'];
+  let username = request.cookies['username'];
+
   let context = {
-    username : request.cookies['username']
+    username : username,
+    loggedIn : loggedIn
   }
   response.render('itineraries/homepage', context);
 };

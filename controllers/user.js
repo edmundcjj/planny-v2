@@ -48,12 +48,12 @@ const create = (userModel) => {
   };
 };
 
-// // Logic to clear cookies when user logouts and redirect back to home
-// const logout = (request, response) => {
-//   response.clearCookie('loggedIn');
-//   response.clearCookie('username');
-//   response.redirect(301, '/');
-// };
+// Logic to clear cookies when user logouts and redirect back to home
+const logout = (request, response) => {
+  response.clearCookie('loggedIn');
+  response.clearCookie('username');
+  response.redirect('/');
+};
 
 // // Logic to render the form for user login
 const loginForm = (request, response) => {
@@ -71,7 +71,8 @@ const login = (userModel) => {
     userModel.user.login(request.body, (error, queryResult) => {
       // User verified, redirect back to default page
       if (queryResult) {
-        let user_name = request.body.name;
+        console.log("queryResult => " ,queryResult);
+        let user_name = queryResult.rows[0].name;
         response.cookie('loggedIn', true);
         response.cookie('username', user_name);
         response.redirect('/itineraries/homepage');
@@ -93,7 +94,7 @@ const login = (userModel) => {
 module.exports = {
   newForm,
   create,
-  // logout,
+  logout,
   loginForm,
   login
 };

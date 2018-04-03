@@ -20,7 +20,7 @@ h3 {
 
 /**
  * ===========================================
- * Classes for home.handlebars
+ * Classes for home.handlebars - default page
  * ===========================================
  */
 
@@ -57,7 +57,7 @@ h3 {
 
 /**
  * ===========================================
- * Classes for register.handlebars
+ * Classes for register.handlebars - user page
  * ===========================================
  */
 
@@ -67,11 +67,21 @@ h3 {
 
 /**
   * ===========================================
-  * Classes for login.handlebars
+  * Classes for login.handlebars - user page
   * ===========================================
   */
 
 .login_form {
+  height: 90vh;
+}
+
+/**
+  * ===========================================
+  * Classes for homepage.handlebars - itinerary page
+  * ===========================================
+  */
+
+.homepage_body{
   height: 90vh;
 }
 
