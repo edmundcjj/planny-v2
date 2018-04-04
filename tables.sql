@@ -9,7 +9,10 @@ CREATE TABLE IF NOT EXISTS users (
 -- create itineraries table that contains itinerary belonging to a user
 CREATE TABLE IF NOT EXISTS itineraries (
   id SERIAL PRIMARY KEY,
-  u_id integer not null
+  u_id integer not null,
+  name varchar(255),
+  start_date date,
+  end_date date
 );
 
 -- create itinerary_days table that contains a reference of days in each itinerary
