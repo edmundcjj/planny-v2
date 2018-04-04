@@ -14,15 +14,60 @@
  * ===========================================
  */
 // Render itineraries homepage
-const home = (request, response) => {
-  let loggedIn = request.cookies['loggedIn'];
-  let username = request.cookies['username'];
+const home = (itineraryModel) => {
+  return (request, response) => {
+    let name = request.cookies['username'];
+    itineraryModel.itineraries.get(name, (error, queryResult) => {
+      console.log("queryResult => ", queryResult.rows);
 
-  let context = {
-    username : username,
-    loggedIn : loggedIn
-  }
-  response.render('itineraries/homepage', context);
+      let loggedIn = request.cookies['loggedIn'];
+      let username = request.cookies['username'];
+
+      response.cookie('userId', queryResult.rows[0].id);
+
+      let context = {
+        username : username,
+        loggedIn : loggedIn,
+        plan_list : []
+      }
+
+      // Populate the list of itineraris the user has
+      for (let i = 0; i < queryResult.rows.length; i++) {
+        context.plan_list.push(queryResult.rows[i].name);
+      }
+      response.render('itineraries/homepage', context);
+    });
+  };
+};
+
+// Render destination planning workspace page
+const destination = (itineraryModel) => {
+  return (request, response) => {
+    console.log("Destination parameter => ", request.params.destination);
+    itineraryModel.itineraries.get_destination(request.params.destination, (error, queryResult) => {
+      console.log("queryResult => ", queryResult);
+
+      // Stitch back the date after extracting out the individual elements
+      let startDate = queryResult.rows[0].start_date_year + "-" + queryResult.rows[0].start_date_month + "-" + queryResult.rows[0].start_date_day;
+      let endDate = queryResult.rows[0].end_date_year + "-" + queryResult.rows[0].end_date_month + "-" + queryResult.rows[0].end_date_day;
+      let duration = (queryResult.rows[0].end_date_day - queryResult.rows[0].start_date_day) + 1;
+
+      let context = {
+        destination: queryResult.rows[0].name,
+        start_date: startDate,
+        end_date: endDate,
+        day_list: [],
+        loggedIn: request.cookies['loggedIn']
+      }
+
+      for (var i = 0; i < duration; i++) {
+        let day = "Day " + i;
+        context.day_list.push(day);
+      }
+
+      response.render('itineraries/destination', context);
+    });
+  };
 };
 
 // // Logic to retrieve data of a specific pokemon and display on the page
@@ -43,7 +88,7 @@ const home = (request, response) => {
 //     });
 //   };
 // };
-//
+
 // // Retrieve data of a specific pokemon and render into the fields of the update form
 // const updateForm = (pokemonModel) => {
 //   return (request, response) => {
@@ -85,37 +130,43 @@ const home = (request, response) => {
 //     });
 //   };
 // };
-//
+
 // // Render the create form to create new pokemon
 // const createForm = (request, response) => {
 //   response.render('pokemon/new');
 // };
-//
-// // Logic to create the new pokemon
-// const create = (pokemonModel) => {
-//   return (request, response) => {
-//     // use pokemon model method `create` to create new pokemon entry in db
-//     pokemonModel.pokemon.create(request.body, (error, queryResult) => {
-//       // queryResult of creation is not useful to us, so we ignore it
-//       // (console log it to see for yourself)
-//       // (you can choose to omit it completely from the function parameters)
-//
-//       if (error) {
-//         console.error('error getting pokemon:', error);
-//         response.sendStatus(500);
-//       }
-//
-//       if (queryResult.rowCount >= 1) {
-//         console.log('Pokemon created successfully');
-//       } else {
-//         console.log('Pokemon could not be created');
-//       }
-//
-//       // redirect to home page after creation
-//       response.redirect('/');
-//     });
-//   };
-// };
+
+// Logic to create new itinerary
+const create = (itineraryModel) => {
+  return (request, response) => {
+
+    console.log("Destination entered => ", request.body.destination);
+
+    let itinerary = {
+      userId: request.cookies['userId'],
+      destination: request.body.destination,
+      start_date: request.body.start_date,
+      end_date: request.body.end_date
+    }
+
+    // use itinerary model method `create` to create new itinerary entry in db
+    itineraryModel.itineraries.create(itinerary, (error, queryResult) => {
+      if (error) {
+        console.error('error creating itinerary:', error);
+        response.sendStatus(500);
+      }
+
+      if (queryResult.rowCount >= 1) {
+        console.log('Itinerary created successfully');
+      } else {
+        console.log('Itinerary could not be created');
+      }
+
+      // redirect to user's destination planning workspace
+      response.redirect('/itineraries/homepage/' + itinerary.destination);
+    });
+  };
+};
 
 /**
  * ===========================================
@@ -124,9 +175,10 @@ const home = (request, response) => {
  */
 module.exports = {
   home,
+  destination,
   // get,
 //   updateForm,
 //   update,
 //   createForm,
-//   create
+  create
 };

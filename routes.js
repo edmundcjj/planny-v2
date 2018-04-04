@@ -34,5 +34,7 @@
     *  =========================================
     */
    // CRUD itineraries
-   app.get('/itineraries/homepage', itineraries.home);
+   app.get('/itineraries/homepage', itineraries.home(db));
+   app.post('/itineraries', itineraries.create(db));
+   app.get('/itineraries/homepage/:destination', itineraries.destination(db));
  };

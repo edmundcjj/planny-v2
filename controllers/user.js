@@ -25,9 +25,7 @@ const create = (userModel) => {
   return (request, response) => {
     // use user model method `create` to create new user entry in db
     userModel.user.create(request.body, (error, queryResult) => {
-      // queryResult of creation is not useful to us, so we ignore it
-      // (console log it to see for yourself)
-      // (you can choose to omit it completely from the function parameters)
+      console.log("queryResult => " ,queryResult);
 
       if (error) {
         console.error('error getting pokemon:', error);
