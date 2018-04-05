@@ -37,4 +37,7 @@
    app.get('/itineraries/homepage', itineraries.home(db));
    app.post('/itineraries', itineraries.create(db));
    app.get('/itineraries/homepage/:destination', itineraries.destination(db));
+   app.get('/itineraries/homepage/:destination/:day', itineraries.day(db));
+   app.get('/itineraries/homepage/:destination/:day/:activity_id/edit', itineraries.updateForm(db));
+   app.put('/itineraries/homepage/:destination/:day/:activity_id', itineraries.updateActivity(db));
  };

@@ -80,6 +80,7 @@ h3 {
   * Classes for homepage.handlebars - itinerary page
   * ===========================================
   */
+
 #logout_bt {
   height: 30px;
   padding: 0;
@@ -91,19 +92,19 @@ h3 {
   padding-right: 25px;
 }
 
-.homepage_welcome_message{
+.homepage_welcome_message {
   height: 10vh;
 }
 
-.homepage_welcome_message > h1 {
-  font-size:  1.5rem;
+.homepage_welcome_message>h1 {
+  font-size: 1.5rem;
 }
 
-.homepage_body{
+.homepage_body {
   height: 83vh;
 }
 
-.vl{
+.vl {
   margin-left: 10px;
   margin-right: 10px;
   border-left: 3px solid black;
@@ -111,11 +112,11 @@ h3 {
 }
 
 .modal-notify .modal-header {
-    border-radius: 3px 3px 0 0;
+  border-radius: 3px 3px 0 0;
 }
 
 .modal-notify .modal-content {
-    border-radius: 3px;
+  border-radius: 3px;
 }
 
 /**
@@ -124,10 +125,45 @@ h3 {
   * ===========================================
   */
 
-#day_card{
+#day_card {
   height: 250px;
   width: 250px;
   margin-right: 20px;
+}
+
+/**
+  * ===========================================
+  * Classes for day.handlebars - itinerary page
+  * ===========================================
+  */
+
+#activity_card {
+  height: 200px;
+  width: 800px;
+  margin-bottom: 40px;
+}
+
+#add_bt{
+  margin-left: 300px;
+}
+
+.card{
+  flex-direction: row;
+}
+
+/**
+  * ===========================================
+  * Classes for edit_activity.handlebars - itinerary page
+  * ===========================================
+  */
+
+#edit_activity_card{
+  height: 800px;
+  width: 750px;
+}
+
+#edit_activity_form{
+  width: 600px;
 }
 
 /**
@@ -205,7 +241,7 @@ h3 {
   .default_header>h1 {
     font-size: 4rem;
   }
-  .homepage_welcome_message > h1{
+  .homepage_welcome_message>h1 {
     font-size: 3.5rem;
   }
   .default_body>h2 {
@@ -217,7 +253,7 @@ h3 {
   .h4 {
     font-size: 2.5rem;
   }
-  .h5{
+  .h5 {
     font-size: 1.5rem;
   }
   .card {
@@ -263,7 +299,7 @@ h3 {
   .h4 {
     font-size: 2.5rem;
   }
-  .h5{
+  .h5 {
     font-size: 1.5rem;
   }
   .btn {
@@ -288,10 +324,10 @@ h3 {
     padding-left: 25px;
     padding-right: 25px;
   }
-  .homepage_welcome_message > h1 {
-    font-size:  3rem;
+  .homepage_welcome_message>h1 {
+    font-size: 3rem;
   }
-  .vl{
+  .vl {
     margin-left: 50px;
     margin-right: 50px;
     border-left: 3px solid black;

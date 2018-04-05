@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Meta viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">
+
+    <!-- Custom CSS Link -->
+    <link rel="stylesheet" href="/css/index.css">
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script> -->
+
+    <!-- Custom CSS Link -->
+    <link rel="stylesheet" href="/css/index.css">
+
+    <title>Planny</title>
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="d-flex align-items-center justify-content-around default_header">
+      <h1>Planny</h1>
+      {{#if loggedIn}}
+        <form action="/users/logout" method="post">
+          <button class="btn btn-cyan" type="submit" id="logout_bt">Logout</button>
+        </form>
+      {{/if}}
+    </div>
+
+    <!-- Displaying the destination as well as the date range -->
+    <div class="d-flex p-2 align-items-center justify-content-center homepage_welcome_message">
+      <h1><b>Editing day {{activity.day}} of {{destination}}...</b></h1>
+    </div>
+
+    <!-- Populate the update form with the data retrieved from database and render it -->
+    <div class="d-flex p-2 align-items-center justify-content-center flex-column homepage_body">
+      <div class="card" id="edit_activity_card">
+        <div class="d-flex p-2 align-items-center justify-content-center card-body">
+          <form id="edit_activity_form" method="POST" action="/itineraries/homepage/{{destination}}/{{activity.day}}/{{activity.id}}?_method=PUT">
+            <p class="h4 text-center py-4">Edit</p>
+
+            <!-- Material input text for start time -->
+            <div class="md-form">
+              Start Time: <input type="text" name="start_time" class="form-control" value="{{activity.start_at}}" placeholder="Start Time, example 10:00">
+            </div>
+
+            <!-- Material input text for end time -->
+            <div class="md-form">
+              End Time: <input type="text" name="end_time" class="form-control" value="{{activity.end_at}}" placeholder="End Time, example 13:00">
+            </div>
+
+            <!-- Material input text for image -->
+            <div class="md-form">
+              Image URL: <input type="text" name="image_url" class="form-control" value="{{activity.image}}" placeholder="Image Link">
+            </div>
+
+            <!-- Material input text for location -->
+            <div class="md-form">
+              Location: <input type="text" name="location" class="form-control" value="{{activity.location}}" placeholder="Location">
+            </div>
+
+            <!-- Material input text for address -->
+            <div class="md-form">
+              Address: <input type="text" name="address" class="form-control" value="{{activity.address}}" placeholder="Address">
+            </div>
+
+            <!-- Material input text for description -->
+            <div class="md-form">
+              Description: <input type="text" name="description" class="form-control" value="{{activity.description}}" placeholder="Description">
+            </div>
+
+            <!-- Save button -->
+            <div class="text-center py-4 mt-3">
+              <button class="btn btn-cyan" type="submit">Save</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

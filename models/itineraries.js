@@ -54,7 +54,7 @@ module.exports = (itinerary_dbPool) => {
     get_destination: (destination, callback) => {
       console.log("Inside get_destination model function");
       console.log("Before querying...");
-      const queryString = "SELECT name, date_part('year', start_date) as start_date_year, date_part('month', start_date) as start_date_month, date_part('day', start_date) as start_date_day, date_part('year', end_date) as end_date_year, date_part('month', end_date) as end_date_month, date_part('day', end_date) as end_date_day FROM itineraries WHERE name = $1"
+      const queryString = "SELECT id, name, date_part('year', start_date) as start_date_year, date_part('month', start_date) as start_date_month, date_part('day', start_date) as start_date_day, date_part('year', end_date) as end_date_year, date_part('month', end_date) as end_date_month, date_part('day', end_date) as end_date_day FROM itineraries WHERE name = $1"
       // const queryString = "SELECT name, date_part('day', start_date) AS start_date_day, date_part('day', end_date) AS end_date_day FROM itineraries WHERE name=$1";
       // const queryString = 'SELECT name, start_date, end_date FROM itineraries WHERE name=$1';
       const values = [destination];
@@ -66,18 +66,50 @@ module.exports = (itinerary_dbPool) => {
       });
     },
 
-    // // SQL logic to update pokemon data of a specific id
-    // update: (pokemon, callback) => {
-    //   console.log("Inside update pokemon models...");
-    //   const queryString = 'UPDATE pokemons SET name=$1, img=$2, height=$3, weight=$4 WHERE pokemons.id = $5';
-    //   const values = [pokemon.name, pokemon.img, pokemon.height, pokemon.weight, parseInt(pokemon.id)];
-    //
-    //   // set up query to update data of a specific pokemon
-    //   console.log("Before updating database...");
-    //   pokemon_dbPool.query(queryString, values, (error, queryResult) => {
-    //     callback(error, queryResult);
-    //   });
-    //   console.log("After updating database...");
-    // }
+    // SQL logic to retrieve the data of a single day of a single itinerary
+    get_day: (day, itinerary_id, userId, callback) => {
+      console.log("Inside get_day model function");
+      console.log("Before querying...");
+
+      const queryString = "SELECT * FROM day_card WHERE day=$1 AND i_id=$2 AND u_id=$3 ORDER BY id ASC";
+      const values = [day, itinerary_id, userId]
+
+      // set up query to retrieve details of a specific day in a specific itinerary
+      itinerary_dbPool.query(queryString, values, (error, queryResult) => {
+        console.log("After querying...");
+        callback(error, queryResult);
+      });
+    },
+
+    // SQL logic to retrieve the data of a specific activity of a single day of a single itinerary
+    get_activity: (activity_id, callback) => {
+      console.log("Inside get_activity model function");
+      console.log("Before querying...");
+
+      const queryString = "SELECT * FROM day_card WHERE id = $1";
+      const values = [activity_id];
+
+      // set up query to retrieve details of a specific day in a specific itinerary
+      itinerary_dbPool.query(queryString, values, (error, queryResult) => {
+        console.log("After querying...");
+        callback(error, queryResult);
+      });
+    },
+
+    // SQL logic to update pokemon data of a specific id
+    update_activity: (activity, activity_id, callback) => {
+      console.log("Inside update activity models...");
+      console.log("Activity data => ", activity);
+
+      const queryString = 'UPDATE day_card SET start_at=$1, end_at=$2, image=$3, location=$4, address=$5, description=$6 WHERE id = $7';
+      const values = [activity.start_time, activity.end_time, activity.image_url, activity.location, activity.address, activity.description, activity_id];
+
+      // set up query to update data of a specific activity of a specific day of a specific itinerary
+      console.log("Before updating database...");
+      itinerary_dbPool.query(queryString, values, (error, queryResult) => {
+        callback(error, queryResult);
+      });
+      console.log("After updating database...");
+    }
   };
 };

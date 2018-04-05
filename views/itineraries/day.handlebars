@@ -42,18 +42,40 @@
     </div>
 
     <!-- Displaying the destination as well as the date range -->
-    <div class="d-flex p-2 align-items-center justify-content-center flex-column homepage_welcome_message">
-      <h1><b>{{destination}}, {{start_date}} -> {{end_date}}</b></h1>
+    <div class="d-flex p-2 align-items-center justify-content-center homepage_welcome_message">
+      <h1><b>Day {{day}} of {{destination}}</b></h1>
+      <button class="btn btn-cyan" type="submit" name="add" id="add_bt">Add</button>
     </div>
 
     <!-- Render the boxes as per the number of days calculated -->
-    <div class="d-flex p-5 justify-content-start flex-wrap homepage_body">
-      {{#each day_list}}
-        <div class="d-flex align-items-center justify-content-center card" id="day_card">
-          <a href="../homepage/{{this.destination}}/{{this.day}}"><h1>Day{{this.day}}</h1></a>
+    <div class="d-flex p-2 align-items-center justify-content-start flex-column homepage_body">
+      {{#each day_items}}
+        <!-- Outer body of one activity in a single day -->
+        <div class="d-flex p-2 align-items-center justify-content-around card" id="activity_card">
+          <!-- Time element -->
+          <div class="d-flex align-items-center justify-content-center flex-column">
+            <h5> <b>{{this.start_time}}</b> </h5>
+            <h5> <b>{{this.end_time}}</b> </h5>
+          </div>
+
+          <!-- Image element -->
+          <img class="img-thumbnail" src="{{this.image}}" alt="">
+
+          <!-- Name, description elements and view more link -->
+          <div class="d-flex align-items-center justify-content-center flex-column">
+            <h5> <b>{{this.location}}</b> </h5>
+            <p>{{this.description}}</p>
+            <!-- <a href="#"><h5>View more</h5></a> -->
+          </div>
+
+          <!-- Edit button -->
+          <div class="d-flex align-items-center justify-content-center flex-column">
+            <button class="btn btn-cyan" name="edit" type="submit" id="edit_bt" onclick="window.location.href='../{{this.destination}}/{{this.day}}/{{this.activity_id}}/edit'">Edit</button>
+          </div>
         </div>
       {{/each}}
     </div>
 
+    <!-- Add activity modal -->
   </body>
 </html>
