@@ -181,10 +181,34 @@ const deleteActivity = (itineraryModel) => {
   };
 };
 
-// // Render the create form to create new pokemon
-// const createForm = (request, response) => {
-//   response.render('pokemon/new');
-// };
+// Create new activity and add it to the day and update day.handlebars
+const createActivity = (itineraryModel) => {
+  return (request, response) => {
+    console.log("Inside createActivity function in controllers");
+    console.log("Request body => ", request.body);
+
+    let itinerary_id_key = request.params.destination + "_itinerary_id";
+    let day = request.params.day;
+    let userId = request.cookies['userId'];
+
+    // use itinerary model method `create_activity` to create new activity entry in db
+    itineraryModel.itineraries.create_activity(request.body, request.cookies[itinerary_id_key], day, userId, (error, queryResult) => {
+      if (error) {
+        console.error('error creating activity:', error);
+        response.sendStatus(500);
+      }
+
+      if (queryResult.rowCount >= 1) {
+        console.log('Activity created successfully');
+      } else {
+        console.log('Activity could not be created');
+      }
+
+      // redirect to day.handlebars to show list of activities
+      response.redirect('/itineraries/homepage/' + request.params.destination + "/" + request.params.day);
+    });
+  };
+};
 
 // Logic to create new itinerary
 const create = (itineraryModel) => {
@@ -220,7 +244,7 @@ const create = (itineraryModel) => {
 
 /**
  * ===========================================
- * Export controller functions as a module
+ * Export controller functions as a module to be used in routes.js file
  * ===========================================
  */
 module.exports = {
@@ -230,6 +254,6 @@ module.exports = {
   deleteActivity,
   updateForm,
   updateActivity,
-  // createForm,
+  createActivity,
   create
 };

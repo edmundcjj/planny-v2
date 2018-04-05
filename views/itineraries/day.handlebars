@@ -44,7 +44,7 @@
     <!-- Displaying the destination as well as the date range -->
     <div class="d-flex p-2 align-items-center justify-content-center homepage_welcome_message">
       <h1><b>Day {{day}} of {{destination}}</b></h1>
-      <button class="btn btn-cyan" type="submit" name="add" id="add_bt">Add</button>
+      <button class="btn btn-cyan" type="submit" name="add" id="add_bt" data-toggle="modal" data-target="#createNewActivity">Add</button>
     </div>
 
     <!-- Render the boxes as per the number of days calculated -->
@@ -79,5 +79,41 @@
     </div>
 
     <!-- Add activity modal -->
+    <div class="modal fade" id="createNewActivity" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-notify modal-warning" role="document">
+        <!--Content-->
+        <div class="modal-content">
+          <!--Header-->
+          <div class="modal-header text-center">
+            <h4 class="modal-title white-text w-100 font-weight-bold py-2">New Activity</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" class="white-text">&times;</span>
+            </button>
+          </div>
+
+          <!--Body-->
+          <div class="modal-body">
+            <form class="md-form mb-5" method="post" action="/itineraries/homepage/{{destination}}/{{day}}">
+              <!-- Form Input Fields -->
+              <!-- <h5>Day<input type="text" name="day" class="form-control validate" placeholder="Enter day"></h5> -->
+              <h5>Start Time<input type="text" name="start_time" class="form-control validate" placeholder="Enter start time of activity, example 09:00"></h5>
+              <h5>End Time<input type="text" name="end_time" class="form-control validate" placeholder="Enter end time of activity, example 11:00"></h5>
+              <h5>Image URL<input type="text" name="image" class="form-control validate" placeholder="Enter image URL"></h5>
+              <h5>Location<input type="text" name="location" class="form-control validate" placeholder="Enter name of location"></h5>
+              <h5>Address<input type="text" name="address" class="form-control validate" placeholder="Enter address of location"></h5>
+              <h5>Description<input type="text" name="description" class="form-control validate" placeholder="Enter description of location"></h5>
+
+              <!-- Form Submit button -->
+              <div class="d-flex justify-content-center">
+                <button class="btn btn-outline-warning waves-effect" type="submit" name="submit">Create!</button>
+              </div>
+
+              <!-- Next level to be just asking user for the name of place and call google places API to get the details of the place -->
+            </form>
+          </div>
+        </div>
+        <!--/.Content-->
+      </div>
+    </div>
   </body>
 </html>

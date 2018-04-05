@@ -11,7 +11,7 @@
 
 /**
  * ===========================================
- * Export model functions as a module
+ * Export model functions as a module to be used in db.js file
  * ===========================================
  */
 module.exports = (itinerary_dbPool) => {
@@ -119,6 +119,21 @@ module.exports = (itinerary_dbPool) => {
       const values = [activity_id];
 
       // set up query to delete data of a specific activity of a specific day of a specific itinerary
+      console.log("Before updating database...");
+      itinerary_dbPool.query(queryString, values, (error, queryResult) => {
+        callback(error, queryResult);
+      });
+      console.log("After updating database...");
+    },
+
+    // SQL logic to create new activity
+    create_activity: (activity, itinerary_id, day, userId, callback) => {
+      console.log("Inside create activity models...");
+
+      const queryString = 'INSERT INTO day_card (i_id, u_id, day, start_at, end_at, image, location, address, description) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)';
+      const values = [itinerary_id, userId, day, activity.start_time, activity.end_time, activity.image, activity.location, activity.address, activity.description];
+
+      // set up query to create new activity entry
       console.log("Before updating database...");
       itinerary_dbPool.query(queryString, values, (error, queryResult) => {
         callback(error, queryResult);
