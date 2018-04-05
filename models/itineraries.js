@@ -23,8 +23,7 @@ module.exports = (itinerary_dbPool) => {
       console.log("Create start date => ", itinerary.start_date);
       console.log("Create end date => ", itinerary.end_date);
 
-      const queryString = `INSERT INTO itineraries (u_id, name, start_date, end_date)
-          VALUES ($1, $2, $3, $4)`;
+      const queryString = 'INSERT INTO itineraries (u_id, name, start_date, end_date) VALUES ($1, $2, $3, $4)';
       const values = [
         itinerary.userId,
         itinerary.destination,
