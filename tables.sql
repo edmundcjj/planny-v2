@@ -15,19 +15,16 @@ CREATE TABLE IF NOT EXISTS itineraries (
   end_date date
 );
 
--- create itinerary_days table that contains a reference of days in each itinerary
-CREATE TABLE IF NOT EXISTS itinerary_days (
-  id SERIAL PRIMARY KEY,
-  i_id integer not null
-);
-
 -- create day_card table that contains itinerary data of a single day in a single itinerary
 CREATE TABLE IF NOT EXISTS day_card (
   id SERIAL PRIMARY KEY,
-  d_id integer not null,
+  i_id integer not null,
+  u_id integer not null,
+  day integer not null,
   start_at time,
   end_at time,
   image varchar(255),
   location text not null,
+  address text not null,
   description text
-)
+);
