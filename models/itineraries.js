@@ -95,7 +95,7 @@ module.exports = (itinerary_dbPool) => {
       });
     },
 
-    // SQL logic to update pokemon data of a specific id
+    // SQL logic to update activity data of a specific id
     update_activity: (activity, activity_id, callback) => {
       console.log("Inside update activity models...");
       console.log("Activity data => ", activity);
@@ -104,6 +104,21 @@ module.exports = (itinerary_dbPool) => {
       const values = [activity.start_time, activity.end_time, activity.image_url, activity.location, activity.address, activity.description, activity_id];
 
       // set up query to update data of a specific activity of a specific day of a specific itinerary
+      console.log("Before updating database...");
+      itinerary_dbPool.query(queryString, values, (error, queryResult) => {
+        callback(error, queryResult);
+      });
+      console.log("After updating database...");
+    },
+
+    // SQL logic to delete a activity record from the database
+    delete_activity: (activity_id, callback) => {
+      console.log("Inside delete activity models...");
+
+      const queryString = 'DELETE FROM day_card WHERE id=$1';
+      const values = [activity_id];
+
+      // set up query to delete data of a specific activity of a specific day of a specific itinerary
       console.log("Before updating database...");
       itinerary_dbPool.query(queryString, values, (error, queryResult) => {
         callback(error, queryResult);

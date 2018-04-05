@@ -40,4 +40,5 @@
    app.get('/itineraries/homepage/:destination/:day', itineraries.day(db));
    app.get('/itineraries/homepage/:destination/:day/:activity_id/edit', itineraries.updateForm(db));
    app.put('/itineraries/homepage/:destination/:day/:activity_id', itineraries.updateActivity(db));
+   app.delete('/itineraries/homepage/:destination/:day/:activity_id', itineraries.deleteActivity(db));
  };

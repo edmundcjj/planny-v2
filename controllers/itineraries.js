@@ -160,6 +160,27 @@ const updateActivity = (itineraryModel) => {
   };
 };
 
+// Delete activity record of a day from the database
+const deleteActivity = (itineraryModel) => {
+  return (request, response) => {
+    let activity_id = request.params.activity_id;
+
+    // use itineraries model method 'delete' to delete data of a specific activity of a specific of a specific itinerary
+    itineraryModel.itineraries.delete_activity(activity_id, (error, queryResult) => {
+      console.log("Controller - deleting activity data in progress...");
+
+      if (error) {
+        console.error('error deleting activity:', error);
+        response.sendStatus(500);
+      } else {
+        // redirect back to display the activities of a particular day of a particular itinerary
+        console.log("Controller - delete activity finished...");
+        response.redirect('/itineraries/homepage/' + request.params.destination + "/" + request.params.day);
+      }
+    });
+  };
+};
+
 // // Render the create form to create new pokemon
 // const createForm = (request, response) => {
 //   response.render('pokemon/new');
@@ -206,7 +227,7 @@ module.exports = {
   home,
   destination,
   day,
-  // get,
+  deleteActivity,
   updateForm,
   updateActivity,
   // createForm,

@@ -65,12 +65,14 @@
           <div class="d-flex align-items-center justify-content-center flex-column">
             <h5> <b>{{this.location}}</b> </h5>
             <p>{{this.description}}</p>
-            <!-- <a href="#"><h5>View more</h5></a> -->
           </div>
 
           <!-- Edit button -->
           <div class="d-flex align-items-center justify-content-center flex-column">
             <button class="btn btn-cyan" name="edit" type="submit" id="edit_bt" onclick="window.location.href='../{{this.destination}}/{{this.day}}/{{this.activity_id}}/edit'">Edit</button>
+            <form action="/itineraries/homepage/{{this.destination}}/{{this.day}}/{{this.activity_id}}?_method=DELETE" method="POST">
+              <button class="btn btn-danger" name="edit" type="submit" id="delete_bt">Delete</button>
+            </form>
           </div>
         </div>
       {{/each}}
