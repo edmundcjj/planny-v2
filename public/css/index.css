@@ -92,6 +92,17 @@ h3 {
   padding-right: 25px;
 }
 
+#destination_card{
+  height: 80px;
+  width: 450px;
+  margin-bottom: 20px;
+}
+
+.myPlan_text{
+  padding-top: 5px;
+  padding-bottom: 30px;
+}
+
 .homepage_welcome_message {
   height: 10vh;
 }

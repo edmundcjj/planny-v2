@@ -52,10 +52,12 @@
   <div class="d-flex p-2 align-items-center justify-content-center homepage_body">
     <!-- User's itinerary list -->
     <div class="card">
-      <div class="d-flex align-items-center justify-content-center flex-column card-body">
-        <p class="h4 text-center py-4">My Plans</p>
+      <div class="d-flex align-items-center justify-content-start flex-column card-body">
+        <p class="h4 text-center myPlan_text">My Plans</p>
         {{#each plan_list}}
-          <li><a href="../itineraries/homepage/{{this}}">{{this}}</a></li>
+          <div class="d-flex align-items-center justify-content-center card" id="destination_card">
+            <a href="/itineraries/homepage/{{this}}"><h1>{{this}}</h1></a>
+          </div>
         {{/each}}
       </div>
     </div>
