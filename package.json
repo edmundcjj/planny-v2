@@ -26,6 +26,7 @@
     "mdbootstrap": "^4.5.0",
     "method-override": "^2.3.10",
     "nodemon": "^1.17.3",
-    "pg": "^7.4.1"
+    "pg": "^7.4.1",
+    "request": "^2.85.0"
   }
 }

@@ -25,16 +25,18 @@ h3 {
  */
 
 .default_header {
-  background-color: #222222;
+  background-color: #00AA8D;
   color: white;
   height: 7vh;
 }
 
 .default_body {
+  background-color: #f5f5f5;
   height: 60vh;
 }
 
 .button_body {
+  background-color: #f5f5f5;
   height: 33vh;
 }
 
@@ -48,6 +50,7 @@ h3 {
 
 .btn {
   font-size: 1rem;
+  background-color: #008975;
 }
 
 .card {
@@ -63,6 +66,7 @@ h3 {
 
 .register_form {
   height: 90vh;
+  background-color: #f5f5f5;
 }
 
 /**
@@ -73,6 +77,7 @@ h3 {
 
 .login_form {
   height: 90vh;
+  background-color: #f5f5f5;
 }
 
 /**
@@ -105,6 +110,7 @@ h3 {
 
 .homepage_welcome_message {
   height: 10vh;
+  background-color: #f5f5f5;
 }
 
 .homepage_welcome_message>h1 {
@@ -113,6 +119,7 @@ h3 {
 
 .homepage_body {
   height: 83vh;
+  background-color: #f5f5f5;
 }
 
 .vl {
@@ -140,6 +147,11 @@ h3 {
   height: 250px;
   width: 250px;
   margin-right: 20px;
+  background-color: #008975;
+}
+
+#day_card > a{
+  color: white;
 }
 
 /**

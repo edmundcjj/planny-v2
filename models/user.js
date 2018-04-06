@@ -54,10 +54,11 @@ module.exports = (user_dbPool) => {
       user_dbPool.query(queryString, values, (error, queryResult) => {
         // Compare password entered by user versus password in the database
         bcrypt.compare(user.password, queryResult.rows[0].password, (err, res) => {
+          console.log("result => ", res);
           if (res) {
             callback(error, queryResult);
           } else {
-            callback(error, queryResult);
+            callback(error, false);
           }
         });
       });

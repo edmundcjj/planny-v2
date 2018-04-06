@@ -36,7 +36,7 @@
       <h1>Planny</h1>
       {{#if loggedIn}}
         <form action="/users/logout" method="post">
-          <button class="btn btn-cyan" type="submit" id="logout_bt">Logout</button>
+          <button class="btn" type="submit" id="logout_bt">Logout</button>
         </form>
       {{/if}}
     </div>
@@ -49,9 +49,7 @@
     <!-- Render the boxes as per the number of days calculated -->
     <div class="d-flex p-5 justify-content-start flex-wrap homepage_body">
       {{#each day_list}}
-        <div class="d-flex align-items-center justify-content-center card" id="day_card">
-          <a href="../homepage/{{this.destination}}/{{this.day}}"><h1>Day{{this.day}}</h1></a>
-        </div>
+        <a href="/itineraries/homepage/{{this.destination}}/{{this.day}}"></a>
       {{/each}}
     </div>
 
