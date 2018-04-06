@@ -126,7 +126,8 @@ const updateForm = (itineraryModel) => {
       } else {
         let context = {
           'destination': request.params.destination,
-          'activity': queryResult.rows[0]
+          'activity': queryResult.rows[0],
+          'loggedIn': request.cookies['loggedIn']
         }
 
         response.cookie('activity_id', queryResult.rows[0].id);

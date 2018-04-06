@@ -43,10 +43,12 @@ require('./routes')(app, db);
 // Root GET request (it doesn't belong in any controller file)
 // To render planny's default home page
 app.get('/', (request, response) => {
-  if (request.cookies['loggedIn'] === true) {
+  if (request.cookies['loggedIn'] == 'true') {
+    console.log("Rendering itineraries homepage...");
     response.redirect('/itineraries/homepage');
   }
   else {
+    console.log("Rendering default page...");
     response.render('home');
   }
 });
