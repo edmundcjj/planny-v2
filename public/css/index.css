@@ -31,12 +31,12 @@ h3 {
 }
 
 .default_body {
-  background-color: #f5f5f5;
+  background-color: #00BF9A;
   height: 60vh;
 }
 
 .button_body {
-  background-color: #f5f5f5;
+  background-color: #00BF9A;
   height: 33vh;
 }
 
@@ -58,6 +58,26 @@ h3 {
   width: 250px;
 }
 
+.ml6 {
+  position: relative;
+  font-weight: 900;
+  font-size: 3.3em;
+}
+
+.ml6 .text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.2em;
+  padding-right: 0.05em;
+  padding-bottom: 0.1em;
+  overflow: hidden;
+}
+
+.ml6 .letter {
+  display: inline-block;
+  line-height: 1em;
+}
+
 /**
  * ===========================================
  * Classes for register.handlebars - user page
@@ -65,8 +85,8 @@ h3 {
  */
 
 .register_form {
-  height: 90vh;
-  background-color: #f5f5f5;
+  height: 93vh;
+  background-color: #00BF9A;
 }
 
 /**
@@ -76,8 +96,8 @@ h3 {
   */
 
 .login_form {
-  height: 90vh;
-  background-color: #f5f5f5;
+  height: 93vh;
+  background-color: #00BF9A;
 }
 
 /**
@@ -110,7 +130,7 @@ h3 {
 
 .homepage_welcome_message {
   height: 10vh;
-  background-color: #f5f5f5;
+  background-color: #00BF9A;
 }
 
 .homepage_welcome_message>h1 {
@@ -119,7 +139,7 @@ h3 {
 
 .homepage_body {
   height: 83vh;
-  background-color: #f5f5f5;
+  background-color: #00BF9A;
 }
 
 .vl {
