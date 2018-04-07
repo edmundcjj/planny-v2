@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
 const db = require('./db');
+const apiRequest = require('request');
 
 /**
  * ===================================
@@ -38,7 +39,7 @@ app.set('view engine', 'handlebars');
  * ===================================
  */
 // Import routes to match incoming requests
-require('./routes')(app, db);
+require('./routes')(app, db, apiRequest);
 
 // Root GET request (it doesn't belong in any controller file)
 // To render planny's default home page
