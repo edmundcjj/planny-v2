@@ -1,119 +1,84 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
 
-    <!-- Meta viewport -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  <meta charset="utf-8">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">
+  <!-- Meta viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Custom CSS Link -->
-    <link rel="stylesheet" href="/css/index.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">
 
-    <!-- JQuery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script> -->
+  <!-- Custom CSS Link -->
+  <link rel="stylesheet" href="/css/index.css">
 
-    <!-- Custom CSS Link -->
-    <link rel="stylesheet" href="/css/index.css">
+  <!-- JQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script> -->
 
-    <title>Planny</title>
-  </head>
-  <body>
-    <!-- Header -->
-    <div class="d-flex align-items-center justify-content-around default_header">
-      <h1>Planny</h1>
-      {{#if loggedIn}}
-        <form action="/users/logout" method="post">
-          <button class="btn" type="submit" id="logout_bt">Logout</button>
-        </form>
-      {{/if}}
-    </div>
+  <!-- Custom CSS Link -->
+  <link rel="stylesheet" href="/css/index.css">
 
-    <!-- Displaying the destination as well as the date range -->
-    <div class="d-flex p-2 align-items-center justify-content-center homepage_welcome_message">
-      <h1><b>Day {{day}} of {{destination}}</b></h1>
-      <button class="btn" type="submit" name="add" id="add_bt" data-toggle="modal" data-target="#createNewActivity">Add</button>
-    </div>
+  <title>Planny</title>
+</head>
 
-    <!-- Render the boxes as per the number of days calculated -->
-    <div class="d-flex p-2 align-items-center justify-content-start flex-column homepage_body">
-      {{#each day_items}}
-        <!-- Outer body of one activity in a single day -->
-        <div class="d-flex p-2 align-items-center justify-content-around card" id="activity_card">
-          <!-- Time element -->
-          <div class="d-flex align-items-center justify-content-center flex-column">
-            <h5> <b>{{this.start_time}}</b> </h5>
-            <h5> <b>{{this.end_time}}</b> </h5>
-          </div>
+<body>
+  <!-- Header -->
+  <div class="d-flex align-items-center justify-content-around default_header">
+    <h1>Planny</h1>
+    {{#if loggedIn}}
+      <form action="/users/logout" method="post">
+        <button class="btn" type="submit" id="logout_bt">Logout</button>
+      </form>
+    {{/if}}
+  </div>
 
-          <!-- Image element -->
-          <img class="img-thumbnail" src="{{this.image}}" alt="">
+  <!-- Displaying the day and destination -->
+  <div class="d-flex p-2 align-items-center justify-content-center homepage_welcome_message">
+    <h1><b>Day {{day}} of {{destination}}</b></h1>
+    <button class="btn" type="submit" name="add" id="add_bt" onclick="window.location.href='/itineraries/homepage/{{destination}}/{{day}}/create'">Add</button>
+  </div>
 
-          <!-- Name, description elements and view more link -->
-          <div class="d-flex align-items-center justify-content-center flex-column">
-            <h5> <b>{{this.location}}</b> </h5>
-            <p>{{this.description}}</p>
-          </div>
-
-          <!-- Edit button -->
-          <div class="d-flex align-items-center justify-content-center flex-column">
-            <button class="btn" name="edit" type="submit" id="edit_bt" onclick="window.location.href='../{{this.destination}}/{{this.day}}/{{this.activity_id}}/edit'">Edit</button>
-            <form action="/itineraries/homepage/{{this.destination}}/{{this.day}}/{{this.activity_id}}?_method=DELETE" method="POST">
-              <button class="btn btn-danger" name="edit" type="submit" id="delete_bt">Delete</button>
-            </form>
-          </div>
+  <!-- Render the boxes as per the number of days calculated -->
+  <div class="d-flex p-2 align-items-center justify-content-start flex-column homepage_body">
+    {{#each day_items}}
+      <!-- Outer body of one activity in a single day -->
+      <div class="d-flex p-2 align-items-center justify-content-around card" id="activity_card">
+        <!-- Time element -->
+        <div class="d-flex align-items-center justify-content-center flex-column">
+          <h4> <b>{{this.start_time}}</b> </h4>
+          <h4> <b>{{this.end_time}}</b> </h4>
         </div>
-      {{/each}}
-    </div>
 
-    <!-- Add activity modal -->
-    <div class="modal fade" id="createNewActivity" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-notify modal-warning" role="document">
-        <!--Content-->
-        <div class="modal-content">
-          <!--Header-->
-          <div class="modal-header text-center">
-            <h4 class="modal-title white-text w-100 font-weight-bold py-2">New Activity</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true" class="white-text">&times;</span>
-            </button>
-          </div>
+        <!-- Image element -->
+        <img class="img-thumbnail" src="{{this.image}}" alt="" id="day_item_img">
 
-          <!--Body-->
-          <div class="modal-body">
-            <form class="md-form mb-5" method="post" action="/itineraries/homepage/{{destination}}/{{day}}">
-              <!-- Form Input Fields -->
-              <!-- <h5>Day<input type="text" name="day" class="form-control validate" placeholder="Enter day"></h5> -->
-              <h5>Start Time<input type="text" name="start_time" class="form-control validate" placeholder="Enter start time of activity, example 09:00"></h5>
-              <h5>End Time<input type="text" name="end_time" class="form-control validate" placeholder="Enter end time of activity, example 11:00"></h5>
-              <h5>Image URL<input type="text" name="image" class="form-control validate" placeholder="Enter image URL"></h5>
-              <h5>Location<input type="text" name="location" class="form-control validate" placeholder="Enter name of location"></h5>
-              <h5>Address<input type="text" name="address" class="form-control validate" placeholder="Enter address of location"></h5>
-              <h5>Description<input type="text" name="description" class="form-control validate" placeholder="Enter description of location"></h5>
-
-              <!-- Form Submit button -->
-              <div class="d-flex justify-content-center">
-                <button class="btn btn-outline-warning waves-effect" type="submit" name="submit">Create!</button>
-              </div>
-
-              <!-- Next level to be just asking user for the name of place and call google places API to get the details of the place -->
-            </form>
-          </div>
+        <!-- Name, description elements and view more link -->
+        <div class="d-flex align-items-center justify-content-center flex-column">
+          <h5> <b>{{this.location}}</b> </h5>
+          <h4> <b>Rating => {{this.description}}/5  </b></h4>
         </div>
-        <!--/.Content-->
+
+        <!-- Edit button -->
+        <div class="d-flex align-items-center justify-content-center flex-column">
+          <button class="btn" name="edit" type="submit" id="edit_bt" onclick="window.location.href='../{{this.destination}}/{{this.day}}/{{this.activity_id}}/edit'">Edit</button>
+          <form action="/itineraries/homepage/{{this.destination}}/{{this.day}}/{{this.activity_id}}?_method=DELETE" method="POST">
+            <button class="btn btn-danger" name="edit" type="submit" id="delete_bt">Delete</button>
+          </form>
+        </div>
       </div>
-    </div>
-  </body>
+    {{/each}}
+  </div>
+</body>
+
 </html>

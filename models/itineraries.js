@@ -127,11 +127,11 @@ module.exports = (itinerary_dbPool) => {
     },
 
     // SQL logic to create new activity
-    create_activity: (activity, itinerary_id, day, userId, callback) => {
+    create_activity: (place_details, activity_form, itinerary_id, day, userId, callback) => {
       console.log("Inside create activity models...");
 
       const queryString = 'INSERT INTO day_card (i_id, u_id, day, start_at, end_at, image, location, address, description) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)';
-      const values = [itinerary_id, userId, day, activity.start_time, activity.end_time, activity.image, activity.location, activity.address, activity.description];
+      const values = [itinerary_id, userId, day, activity_form.start_time, activity_form.end_time, activity_form.image, activity_form.location, place_details.formatted_address, place_details.rating];
 
       // set up query to create new activity entry
       console.log("Before updating database...");

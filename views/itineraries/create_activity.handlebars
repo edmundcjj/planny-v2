@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Meta viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">
+
+    <!-- Custom CSS Link -->
+    <link rel="stylesheet" href="/css/index.css">
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script> -->
+
+    <!-- Custom CSS Link -->
+    <link rel="stylesheet" href="/css/index.css">
+
+    <title>Planny</title>
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="d-flex align-items-center justify-content-around default_header">
+      <h1>Planny</h1>
+      {{#if loggedIn}}
+        <form action="/users/logout" method="post">
+          <button class="btn" type="submit" id="logout_bt">Logout</button>
+        </form>
+      {{/if}}
+    </div>
+
+    <div class="d-flex p-2 align-items-center justify-content-center homepage_welcome_message">
+      <h1><b>Create New Activity</b></h1>
+    </div>
+
+    <div class="d-flex p-2 align-items-center justify-content-center flex-column homepage_body">
+      <div class="card" id="create_activity_card">
+        <div class="d-flex align-items-center justify-content-center card-body">
+          <form id="create_activity_form" method="POST" action="/itineraries/homepage/{{destination}}/{{day}}">
+            <p class="h4 text-center py-4">New Activity</p>
+
+            <div class="md-form">
+              <h5>Start Time<input type="text" name="start_time" class="form-control validate" placeholder="Enter start time of activity, example 09:00"></h5>
+            </div>
+
+            <div class="md-form">
+              <h5>End Time<input type="text" name="end_time" class="form-control validate" placeholder="Enter end time of activity, example 11:00"></h5>
+            </div>
+
+            <div class="md-form">
+              <h5>Image URL<input type="text" name="image" class="form-control validate" placeholder="Enter image URL"></h5>
+            </div>
+
+            <div class="md-form">
+              <h5>Location<input id="pac-input" type="text" name="location" class="form-control validate" placeholder="Enter name of location"></h5>
+            </div>
+
+            <div class="md-form">
+              <h5>Place Id<input type="text" name="place_id" class="form-control validate" placeholder="Place Id" id="place-id"></h5>
+            </div>
+
+            <div class="text-center py-4 mt-3">
+              <button class="btn" type="submit">Create !</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Custom Javascript Link to handle the geocoding of a place -->
+    <script type="text/javascript" src="/js/createActivity.js"></script>
+
+    <!-- Places Library Javascript -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeZJwsqljxPJDyg0A9_N6MGDRW065PEvk&libraries=places&callback=initMap" async defer></script>
+  </body>
+</html>

@@ -17,7 +17,7 @@ const users = require('./controllers/user');
  * Export route functions as a module to be used in index.js file
  * ===========================================
  */
-module.exports = (app, db) => {
+module.exports = (app, db, apiRequest) => {
   /*
    *  =========================================
    *  Users
@@ -39,8 +39,9 @@ module.exports = (app, db) => {
    *  =========================================
    */
   // CRUD itineraries
+  app.get('/itineraries/homepage/:destination/:day/create', itineraries.createForm);
   app.get('/itineraries/homepage', itineraries.home(db));
-  app.post('/itineraries/homepage/:destination/:day', itineraries.createActivity(db));
+  app.post('/itineraries/homepage/:destination/:day', itineraries.createActivity(db, apiRequest));
   app.post('/itineraries', itineraries.create(db));
   app.get('/itineraries/homepage/:destination', itineraries.destination(db));
   app.get('/itineraries/homepage/:destination/:day', itineraries.day(db));

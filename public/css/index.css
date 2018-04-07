@@ -117,13 +117,13 @@ h3 {
   padding-right: 25px;
 }
 
-#destination_card{
+#destination_card {
   height: 80px;
   width: 450px;
   margin-bottom: 20px;
 }
 
-.myPlan_text{
+.myPlan_text {
   padding-top: 5px;
   padding-bottom: 30px;
 }
@@ -170,7 +170,7 @@ h3 {
   background-color: #008975;
 }
 
-#day_card > a{
+#day_card>a {
   color: white;
 }
 
@@ -182,15 +182,22 @@ h3 {
 
 #activity_card {
   height: 200px;
-  width: 800px;
+  width: 900px;
   margin-bottom: 40px;
 }
 
-#add_bt{
+#add_bt {
   margin-left: 300px;
 }
 
-.card{
+#day_item_img{
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 120px;
+  width: 200px;
+}
+
+.card {
   flex-direction: row;
 }
 
@@ -200,12 +207,74 @@ h3 {
   * ===========================================
   */
 
-#edit_activity_card{
+#create_activity_card {
   height: 800px;
   width: 750px;
 }
 
-#edit_activity_form{
+#create_activity_form {
+  width: 600px;
+}
+
+/* Always set the map height explicitly to define the size of the div
+ * element that contains the map. */
+#map {
+  height: 100%;
+}
+
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.controls {
+  background-color: #fff;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  height: 29px;
+  margin-left: 17px;
+  margin-top: 10px;
+  outline: none;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 400px;
+}
+
+.controls:focus {
+  border-color: #4d90fe;
+}
+
+.title {
+  font-weight: bold;
+}
+
+#infowindow-content {
+  display: none;
+}
+
+#map #infowindow-content {
+  display: inline;
+}
+
+/**
+  * ===========================================
+  * Classes for edit_activity.handlebars - itinerary page
+  * ===========================================
+  */
+
+#edit_activity_card {
+  height: 800px;
+  width: 750px;
+}
+
+#edit_activity_form {
   width: 600px;
 }
 

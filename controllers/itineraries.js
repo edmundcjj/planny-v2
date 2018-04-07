@@ -8,12 +8,14 @@
  * to be imported (using `require(...)`) in `routes.js`.
  */
 
+// const request = require('request');
+
 /**
  * ===========================================
  * Controller logic
  * ===========================================
  */
-// Render itineraries homepage
+// Render homepage.handlebars with the list of itineraries belonging to one user
 const home = (itineraryModel) => {
   return (request, response) => {
     let name = request.cookies['username'];
@@ -26,9 +28,9 @@ const home = (itineraryModel) => {
       response.cookie('userId', queryResult.rows[0].id);
 
       let context = {
-        username : username,
-        loggedIn : loggedIn,
-        plan_list : []
+        username: username,
+        loggedIn: loggedIn,
+        plan_list: []
       }
 
       // Populate the list of itineraris the user has
@@ -40,13 +42,13 @@ const home = (itineraryModel) => {
   };
 };
 
-// Render the number of days for the itinerary
+// Render the number of days for the itinerary in destination.handlebars
 const destination = (itineraryModel) => {
   return (request, response) => {
     console.log("Destination parameter => ", request.params.destination);
     itineraryModel.itineraries.get_destination(request.params.destination, (error, queryResult) => {
+
       // Stitch back the date after extracting out the individual elements
-      console.log("queryResult => ", queryResult.rows[0]);
       let startDate = queryResult.rows[0].start_date_year + "-" + queryResult.rows[0].start_date_month + "-" + queryResult.rows[0].start_date_day;
       let endDate = queryResult.rows[0].end_date_year + "-" + queryResult.rows[0].end_date_month + "-" + queryResult.rows[0].end_date_day;
       let duration = (queryResult.rows[0].end_date_day - queryResult.rows[0].start_date_day) + 1;
@@ -67,7 +69,7 @@ const destination = (itineraryModel) => {
         let actual_day = i + 1;
         let days = {
           'destination': queryResult.rows[0].name,
-          'day':  actual_day
+          'day': actual_day
         }
         context.day_list.push(days);
       }
@@ -77,7 +79,7 @@ const destination = (itineraryModel) => {
   };
 };
 
-// Render the details of the day in the itinerary
+// Render the details of the day in the itinerary in day.handlebars
 const day = (itineraryModel) => {
   return (request, response) => {
     console.log("Inside day function in itineraries controller...");
@@ -88,15 +90,21 @@ const day = (itineraryModel) => {
 
       let context = {
         loggedIn: request.cookies['loggedIn'],
-        day:  request.params.day,
+        day: request.params.day,
         destination: request.params.destination,
         day_items: []
       }
 
       for (var i = 0; i < queryResult.rows.length; i++) {
+        let start_time_array = queryResult.rows[i].start_at.split('');
+        let start_time = start_time_array[0] + start_time_array[1] + start_time_array[2] + start_time_array[3] + start_time_array[4];
+
+        let end_time_array = queryResult.rows[i].end_at.split('');
+        let end_time = end_time_array[0] + end_time_array[1] + end_time_array[2] + end_time_array[3] + end_time_array[4];
+
         let item = {
-          'start_time': queryResult.rows[i].start_at,
-          'end_time': queryResult.rows[i].end_at,
+          'start_time': start_time,
+          'end_time': end_time,
           'image': queryResult.rows[i].image,
           'location': queryResult.rows[i].location,
           'address': queryResult.rows[i].address,
@@ -113,7 +121,7 @@ const day = (itineraryModel) => {
   };
 };
 
-// Retrieve data of a specifc activity and render it into a form
+// Retrieve data of a specifc activity and render it into a form in edit_activity.handlebars
 const updateForm = (itineraryModel) => {
   return (request, response) => {
     // use itineraries model method `get` to retrieve activity data
@@ -182,31 +190,53 @@ const deleteActivity = (itineraryModel) => {
   };
 };
 
+// Render the create new activity form in create_activity.handlebars
+const createForm = (request, response) => {
+  let context = {
+    'destination': request.params.destination,
+    'day': request.params.day
+  }
+  response.render('itineraries/create_activity', context);
+};
+
 // Create new activity and add it to the day and update day.handlebars
-const createActivity = (itineraryModel) => {
+const createActivity = (itineraryModel, apiRequest) => {
   return (request, response) => {
     console.log("Inside createActivity function in controllers");
     console.log("Request body => ", request.body);
 
-    let itinerary_id_key = request.params.destination + "_itinerary_id";
-    let day = request.params.day;
-    let userId = request.cookies['userId'];
+    let place_id = request.body.place_id;
 
-    // use itinerary model method `create_activity` to create new activity entry in db
-    itineraryModel.itineraries.create_activity(request.body, request.cookies[itinerary_id_key], day, userId, (error, queryResult) => {
-      if (error) {
-        console.error('error creating activity:', error);
-        response.sendStatus(500);
+    const queryString = 'https://maps.googleapis.com/maps/api/place/details/json?placeid=' + place_id + '&key=AIzaSyBeZJwsqljxPJDyg0A9_N6MGDRW065PEvk';
+    console.log("Query String for place details => ", queryString);
+
+    // Retrieve details of a place using google place details api
+    apiRequest(queryString, function(error, res, body) {
+      if (!error && res.statusCode == 200) {
+        let dataObj = JSON.parse(body);
+        console.log("Place details result => ", dataObj.result);
+
+        let itinerary_id_key = request.params.destination + "_itinerary_id";
+        let day = request.params.day;
+        let userId = request.cookies['userId'];
+
+        // use itinerary model method `create_activity` to create new activity entry in db
+        itineraryModel.itineraries.create_activity(dataObj.result, request.body, request.cookies[itinerary_id_key], day, userId, (error, queryResult) => {
+          if (error) {
+            console.error('error creating activity:', error);
+            response.sendStatus(500);
+          }
+
+          if (queryResult.rowCount >= 1) {
+            console.log('Activity created successfully');
+          } else {
+            console.log('Activity could not be created');
+          }
+
+          // redirect to day.handlebars to show list of activities
+          response.redirect('/itineraries/homepage/' + request.params.destination + "/" + request.params.day);
+        });
       }
-
-      if (queryResult.rowCount >= 1) {
-        console.log('Activity created successfully');
-      } else {
-        console.log('Activity could not be created');
-      }
-
-      // redirect to day.handlebars to show list of activities
-      response.redirect('/itineraries/homepage/' + request.params.destination + "/" + request.params.day);
     });
   };
 };
@@ -256,5 +286,6 @@ module.exports = {
   updateForm,
   updateActivity,
   createActivity,
-  create
+  create,
+  createForm
 };
