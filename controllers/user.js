@@ -20,7 +20,7 @@ const newForm = (request, response) => {
 };
 
 // Logic to create new user
-const create = (userModel) => {
+const create_user = (userModel) => {
   console.log("Inside create user function in controller");
   return (request, response) => {
     // use user model method `create` to create new user entry in db
@@ -28,7 +28,7 @@ const create = (userModel) => {
       console.log("queryResult => " ,queryResult);
 
       if (error) {
-        console.error('error getting pokemon:', error);
+        console.error('error creating user:', error);
         response.sendStatus(500);
       }
 
@@ -91,7 +91,7 @@ const login = (userModel) => {
  */
 module.exports = {
   newForm,
-  create,
+  create_user,
   logout,
   loginForm,
   login

@@ -49,6 +49,17 @@ module.exports = (itinerary_dbPool) => {
       });
     },
 
+    // SQL logic to retrieve user details if there 0 itineraries
+    get_user: (username, callback) => {
+      const queryString = 'SELECT users.id FROM users WHERE users.name = $1';
+      const values = [username];
+
+      // set up query to retrieve the data of a specific pokemon
+      itinerary_dbPool.query(queryString, values, (error, queryResult) => {
+        callback(error, queryResult);
+      });
+    },
+
     // SQL logic to retrieve the data of a single itinerary, mainly the dates to calculate the duration of the trip
     get_destination: (destination, callback) => {
       console.log("Inside get_destination model function");

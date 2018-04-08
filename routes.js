@@ -25,7 +25,7 @@ module.exports = (app, db, apiRequest) => {
    */
   // CRUD users
   app.get('/users/register', users.newForm); // Form to create new user
-  app.post('/users', users.create(db));
+  app.post('/users', users.create_user(db));
 
 
   // Authentication

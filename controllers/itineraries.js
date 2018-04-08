@@ -20,24 +20,47 @@ const home = (itineraryModel) => {
   return (request, response) => {
     let name = request.cookies['username'];
     itineraryModel.itineraries.get(name, (error, queryResult) => {
-      console.log("queryResult => ", queryResult.rows);
+      console.log("queryResult for itineraries homepage length => ", queryResult.rows.length);
 
-      let loggedIn = request.cookies['loggedIn'];
-      let username = request.cookies['username'];
+      // Result returned contains more than 1 itineraries
+      if (queryResult.rows.length > 0) {
+        console.log("Result returned contains more than 1 itineraries...");
 
-      response.cookie('userId', queryResult.rows[0].id);
+        let loggedIn = request.cookies['loggedIn'];
+        let username = request.cookies['username'];
 
-      let context = {
-        username: username,
-        loggedIn: loggedIn,
-        plan_list: []
+        response.cookie('userId', queryResult.rows[0].id);
+
+        let context = {
+          username: username,
+          loggedIn: loggedIn,
+          plan_list: []
+        }
+
+        // Populate the list of itineraris the user has
+        for (let i = 0; i < queryResult.rows.length; i++) {
+          context.plan_list.push(queryResult.rows[i].name);
+        }
+        response.render('itineraries/homepage', context);
       }
+      // Result returned contains 0 itineraries
+      else {
+        console.log("Result returned contains 0 itineraries...");
 
-      // Populate the list of itineraris the user has
-      for (let i = 0; i < queryResult.rows.length; i++) {
-        context.plan_list.push(queryResult.rows[i].name);
+        itineraryModel.itineraries.get_user(name, (error, queryResult) => {
+          let loggedIn = request.cookies['loggedIn'];
+          let username = request.cookies['username'];
+
+          response.cookie('userId', queryResult.rows[0].id);
+
+          let context = {
+            username: username,
+            loggedIn: loggedIn,
+            plan_list: []
+          }
+          response.render('itineraries/homepage', context);
+        });
       }
-      response.render('itineraries/homepage', context);
     });
   };
 };
