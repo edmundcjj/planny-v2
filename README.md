@@ -22,16 +22,21 @@ Do remember to check that the environment variables are updated with the above i
 
 Once you are done with the prerequisites, let's move on to the installation. Note that the next few steps are meant for localhost development only.
 
-Step 1 => Fork the project to your own github account
+**Step 1** => Fork the project to your own github account
 
-Step 2 => Git clone the project to your local computer directory using a terminal
+**Step 2** => Git clone the project to your local computer directory using a terminal
 ![alt text](https://i.imgur.com/7nUYl4T.png)
 
-Step 3 => In the terminal, dive down to the cloned project folder and type the command "npm install"
+**Step 3** => In the terminal, dive down to the cloned project folder and type the command "npm install"
 ![alt text](https://i.imgur.com/unCQuUu.png)
 This command will install all the packages required for this particular project
 
-Final step => In the terminal, type the command "nodemon index.js", launch the browser and type in the address as shown in the picture, you will see the default page.
+**Step 4** => Get a google developers api key and update it in the code wherever needed. Visit the site shown below to see how to get a api key
+```
+https://developers.google.com/places/web-service/get-api-key
+```
+
+**Final step** => In the terminal, type the command "nodemon index.js", launch the browser and type in the address as shown in the picture, you will see the default page.
 ![alt text](https://i.imgur.com/2gVDwtT.png)
 
 
@@ -39,38 +44,38 @@ Final step => In the terminal, type the command "nodemon index.js", launch the b
 
 The following steps below will show you how to deploy your local project to Heroku so that it is publicly accessible.
 
-Step 1 => Create an account with heroku.
+**Step 1** => Create an account with heroku.
 
-Step 2 => Make sure the code shown below exists in the package.json file
+**Step 2** => Make sure the code shown below exists in the package.json file
 ![alt text](https://i.imgur.com/GluENIY.png)
 Do remember to edit the version of node with the version you have installed in your local system!
 
-Step 3 => Open git cmd, type the command "heroku login" and enter your credentials
+**Step 3** => Open git cmd, type the command "heroku login" and enter your credentials
 ![alt text](https://i.imgur.com/5RjmuJ7.png)
 
-Step 4 => Open another git cmd, dive down to the project folder and type the command
+**Step 4** => Open another git cmd, dive down to the project folder and type the command
 ```
 heroku create sitename
 ```
 where sitename is the name of your app. This will create a url like: http://sitename.herokuapp.com"
 
-Step 5 => In the same git cmd in step 4, enter the following command to push your project to heroku
+**Step 5** => In the same git cmd in step 4, enter the following command to push your project to heroku
 ```
 git push heroku master
 ```
 
-Step 6 => Similarly to step 5, enter the following command
+**Step 6** => Similarly to step 5, enter the following command
 ```
 heroku ps:scale web=1
 ```
 This will ensure you have at least one dyno(process) running.
 
-Step 7 => Click the link below to add the heroku postgres addon to your heroku project
+**Step 7** => Click the link below to add the heroku postgres addon to your heroku project
 ```
 https://elements.heroku.com/addons/heroku-postgresql
 ```
 
-Step 8 => Ensure that the following piece of code exists in the db.js file
+**Step 8** => Ensure that the following piece of code exists in the db.js file
 ```
 // inside of db.js
 
@@ -111,23 +116,15 @@ if( process.env.DATABASE_URL ){
 const pool = new pg.Pool(configs);
 ```
 
-Step 9 => Create database tables on the heroku db in the same git cmd in step 6
+**Step 9** => Create database tables on the heroku db in the same git cmd in step 6
 ```
 heroku pg:psql < tables.sql
 ```
 
+**You are now ready to launch the app deployed to heroku. You can launch the app in your heroku dashboard**
+
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* [Express](https://expressjs.com/en/4x/api.html) - The web framework used for node.js
+* [MDBootstrap](https://mdbootstrap.com/) - The front-end framework used
+* [Google Place Details](https://developers.google.com/places/web-service/details) - Google Place Details API
