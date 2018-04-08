@@ -16,9 +16,7 @@ Make sure to download and install the following items
 * Git - https://git-scm.com/
 
 Do remember to check that the environment variables are updated with the above items
-```
 ![alt text](README_images/environment_variables_checking.png)
-```
 
 ### Installation
 
@@ -27,9 +25,7 @@ Once you are done with the prerequisites, let's move on to the installation
 Step 1 => Fork the project to your own github account
 
 Step 2 => Git clone the project to your local computer directory using a terminal
-```
 ![alt text](README_images/git_clone_github_project.png)
-```
 
 Step 3 => In the terminal, dive down to the cloned project folder and type this command
 ```
