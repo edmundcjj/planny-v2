@@ -31,10 +31,7 @@ Once you are done with the prerequisites, let's move on to the installation. Not
 ![alt text](https://i.imgur.com/unCQuUu.png)
 This command will install all the packages required for this particular project
 
-**Step 4** => Get a google developers api key and update it in the code wherever needed. Visit the site shown below to see how to get a api key
-```
-https://developers.google.com/places/web-service/get-api-key
-```
+**Step 4** => Get a google developers api key and update it in the code wherever needed. Visit https://developers.google.com/places/web-service/get-api-key to see how to get a api key.
 
 **Final step** => In the terminal, type the command "nodemon index.js", launch the browser and type in the address as shown in the picture, you will see the default page.
 ![alt text](https://i.imgur.com/2gVDwtT.png)
