@@ -120,6 +120,12 @@ heroku pg:psql < tables.sql
 
 **You are now ready to launch the app deployed to heroku. You can launch the app in your heroku dashboard**
 
+## Wireframes
+<!-- Include the pictures of the wireframes -->
+
+## User Stories
+<!-- Link to trello -->
+
 ## Built With
 
 * [Express](https://expressjs.com/en/4x/api.html) - The web framework used for node.js
