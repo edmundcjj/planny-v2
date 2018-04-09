@@ -2,9 +2,11 @@
 
 This is a self project of my own to practice creating a full stack web application using the various tech stacks. A personal itinerary planner where one can plan an itinerary for a holiday trip so that one does not get so lost not knowing what to do during the trip.
 
+
 ## Getting Started
 
-The instructions below will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+The instructions below will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment section for notes on how to deploy the project on a live system.
+
 
 ### Prerequisites
 
@@ -17,6 +19,7 @@ Make sure to download and install the following items
 
 Do remember to check that the environment variables are updated with the above items
 ![alt text](https://i.imgur.com/AmKg1k8.png)
+
 
 ### Installation
 
@@ -120,14 +123,42 @@ heroku pg:psql < tables.sql
 
 **You are now ready to launch the app deployed to heroku. You can launch the app in your heroku dashboard**
 
+
 ## Wireframes
-<!-- Include the pictures of the wireframes -->
+
+The following below shows the wireframes I came up with during the planning process.
+![alt text](https://i.imgur.com/pBR5YOP.png)
+
+
+## ERD Diagrams
+
+The following shows the relationships between the various database tables for this project.
+![alt text](https://i.imgur.com/AB7fxI5.png)
 
 ## User Stories
-<!-- Link to trello -->
+Click this link to view the user stories for this project - https://trello.com/b/KRfeVL3E
+
 
 ## Built With
+**Frameworks**
+* [Node](https://expressjs.com/en/4x/api.html) - Open-source, cross-platform JavaScript run-time environment that executes JavaScript code server-side.
+* [Express](https://expressjs.com/en/4x/api.html) - The back-end web framework used for node.js
+* [MDBootstrap](https://mdbootstrap.com/) - The front-end framework used that aligns with Google Material Design
 
-* [Express](https://expressjs.com/en/4x/api.html) - The web framework used for node.js
-* [MDBootstrap](https://mdbootstrap.com/) - The front-end framework used
+**NPM Packages**
+* [NPM request](https://www.npmjs.com/package/request) - To handle api calls to external APIs
+* [NPM express](https://www.npmjs.com/package/express) - Fast, unopinionated, minimalist web framework for node.
+* [NPM express-handlebars](https://www.npmjs.com/package/express-handlebars) - Handlebars view engine for Express web framework
+* [NPM bcrypt](https://www.npmjs.com/package/bcrypt) - Library to help with hashing passwords
+* [NPM body-parser](https://www.npmjs.com/package/body-parser) - Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
+* [NPM cookie-parser](https://www.npmjs.com/package/cookie-parser) - Parse Cookie header and populate req.cookies with an object keyed by the cookie names. Optionally you may enable signed cookie support by passing a secret string, which assigns req.secret so it may be used by other middleware.
+* [NPM method-override](https://www.npmjs.com/package/method-override) - Lets you use HTTP verbs such as PUT or DELETE in places where the client doesn't support it.
+* [NPM nodemon](https://www.npmjs.com/package/nodemon) - nodemon will watch the files in the directory in which nodemon was started, and if any files change, nodemon will automatically restart your node application.
+* [NPM pg](https://www.npmjs.com/package/pg) - Non-blocking PostgreSQL client for node.js. Pure JavaScript and optional native libpq bindings.
+
+**Database**
+* [PostgreSQL](https://www.postgresql.org/) - Open Source Database
+
+**APIs**
 * [Google Place Details](https://developers.google.com/places/web-service/details) - Google Place Details API
+* [Google Place Autocomplete](https://developers.google.com/places/web-service/autocomplete) - Google Place Autocomplete API
