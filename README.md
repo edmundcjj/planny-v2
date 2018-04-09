@@ -2,6 +2,8 @@
 
 This is a self project of my own to practice creating a full stack web application using the various tech stacks. A personal itinerary planner where one can plan an itinerary for a holiday trip so that one does not get so lost not knowing what to do during the trip.
 
+You can view the complete app here - https://itinerary-planner.herokuapp.com/
+
 
 ## Getting Started
 
